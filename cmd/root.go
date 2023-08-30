@@ -1,30 +1,25 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
+Package cmd contains the root command of the evmos-checker tool.
 */
 package cmd
 
 import (
 	"os"
 
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
-
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "evmos-checks",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Use:   "evmos-checker",
+	Short: "A collection of Evmos related checks",
+	Long: `Evmos Checker | Malte Herrmann | Evmos Core Team
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+This tool is a collection of checks that are run during development of the Evmos core protocol.`,
+	Run: func(cmd *cobra.Command, args []string) {
+		log.Info().Msg("started evmos-checker")
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -42,10 +37,4 @@ func init() {
 	// will be global for your application.
 
 	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.evmos-checks.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
