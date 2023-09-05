@@ -25,8 +25,12 @@ func NewLintCmd() *cobra.Command {
 		Short: "Runs the linter checks",
 		Long:  lintLongDesc,
 		Run: func(cmd *cobra.Command, args []string) {
-			// pass lint checks into constructor
-			evmosChecker := checker.NewChecker()
+			// TODO: pass lint checks into constructor
+			lintChecks := NewLintChecks()
+			evmosChecker := checker.NewChecker(
+				checker.NewConfig(lintChecks),
+			)
+
 			err := evmosChecker.Run()
 			if err != nil {
 				log.Fatal().Err(err).Msg("failed to run evmos-checker")
@@ -35,4 +39,12 @@ func NewLintCmd() *cobra.Command {
 	}
 
 	return lintCmd
+}
+
+// NewLintChecks returns a slice of all linting checks.
+func NewLintChecks() []checker.Check {
+	return []checker.Check{
+		checker.NewCheck("make lint"),
+		checker.NewCheck("make proto-lint"),
+	}
 }

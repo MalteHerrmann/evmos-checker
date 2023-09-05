@@ -31,10 +31,11 @@ func newRootCmdRaw() *cobra.Command {
 
 This tool is a collection of checks that are run during development of the Evmos core protocol.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			evmosChecker := checker.NewChecker()
+			evmosChecker := checker.NewChecker(checker.Config{})
 
 			err := evmosChecker.Run()
 			if err != nil {
+				// TODO: replace with context logger
 				log.Fatal().Err(err).Msg("failed to run evmos-checker")
 			}
 		},
