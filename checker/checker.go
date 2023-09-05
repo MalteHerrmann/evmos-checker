@@ -38,7 +38,9 @@ func (c *Checker) Run() error {
 	}
 
 	c.logger.Info().Msg("Starting checker...")
-	c.logger.Info().Msg(fmt.Sprintf("Running checks: %s", strings.Join(checkNames, ", ")))
+	c.logger.Info().Msg(
+		fmt.Sprintf("Running %d checks: %s", len(checkNames), strings.Join(checkNames, ", ")),
+	)
 
 	return nil
 }
