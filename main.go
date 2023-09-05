@@ -8,17 +8,9 @@ package main
 
 import (
 	"github.com/MalteHerrmann/evmos-checker/cmd"
-	"github.com/MalteHerrmann/evmos-checker/checker"
-	"github.com/pkg/errors"
 )
 
 func main() {
+	// Execute the cobra CLI binary.
 	cmd.Execute()
-
-  // Run the checker
-	evmosChecker := checker.NewChecker()
-
-	if err := evmosChecker.Run(); err != nil {
-		panic(errors.Wrap(err, "failed to run checker"))
-	}
 }

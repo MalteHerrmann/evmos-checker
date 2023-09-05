@@ -6,7 +6,8 @@ package cmd
 import (
 	"os"
 
-	lintchecks "github.com/MalteHerrmann/evmos-checks/checks/lint"
+	"github.com/MalteHerrmann/evmos-checker/checker"
+	lintchecks "github.com/MalteHerrmann/evmos-checker/checks/lint"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
@@ -19,7 +20,12 @@ var rootCmd = &cobra.Command{
 
 This tool is a collection of checks that are run during development of the Evmos core protocol.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Info().Msg("started evmos-checker")
+		evmosChecker := checker.NewChecker()
+
+		err := evmosChecker.Run()
+		if err != nil {
+			log.Fatal().Err(err).Msg("failed to run evmos-checker")
+		}
 	},
 }
 
