@@ -2,7 +2,12 @@ module github.com/MalteHerrmann/evmos-checker
 
 go 1.21
 
-require github.com/rs/zerolog v1.30.0
+require (
+	github.com/onsi/ginkgo/v2 v2.12.0
+	github.com/onsi/gomega v1.27.10
+	github.com/pkg/errors v0.9.1
+	github.com/rs/zerolog v1.30.0
+)
 
 require (
 	github.com/go-logr/logr v1.2.4 // indirect
@@ -11,8 +16,6 @@ require (
 	github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/onsi/ginkgo/v2 v2.12.0 // indirect
-	github.com/onsi/gomega v1.27.10 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
