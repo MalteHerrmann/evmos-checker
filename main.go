@@ -2,10 +2,14 @@ package main
 
 import (
 	"github.com/MalteHerrmann/evmos-checker/checker"
+	"github.com/pkg/errors"
 )
 
 func main() {
-	// Start the checker
+	// Run the checker
 	evmosChecker := checker.NewChecker()
-	evmosChecker.Start()
+
+	if err := evmosChecker.Run(); err != nil {
+		panic(errors.Wrap(err, "failed to run checker"))
+	}
 }
