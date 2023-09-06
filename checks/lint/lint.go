@@ -25,7 +25,6 @@ func NewLintCmd() *cobra.Command {
 		Short: "Runs the linter checks",
 		Long:  lintLongDesc,
 		Run: func(cmd *cobra.Command, args []string) {
-			// TODO: pass lint checks into constructor
 			lintChecks := NewLintChecks()
 			evmosChecker := checker.NewChecker(
 				checker.NewConfig(lintChecks),
