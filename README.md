@@ -3,18 +3,15 @@
 This tool can be used to check a WIP branch
 during development on the Evmos core infrastructure.
 It runs necessary checks
-and displays the progress and results
-in a terminal UI.
+and displays the progress and results.
 
 ## Usage
 
-Run the tool in the root of the repository:
+Run the tool in the root of the repository to check:
 
 ```bash
 evmos-checker
 ```
-
-It will open the terminal UI and start running the checks.
 
 ## Installation
 
