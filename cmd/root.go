@@ -12,9 +12,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// rootLongDesc is the long description of the root command.
+const rootLongDesc = `Evmos Checker | Malte Herrmann | Evmos Core Team
+
+This tool is a collection of checks that are run during development of the Evmos core protocol.`
+
 // NewRootCmd returns the root command of the evmos-checker tool.
 func NewRootCmd() *cobra.Command {
 	rootCmd := newRootCmdRaw()
+
 	lintCmd := lintchecks.NewLintCmd()
 	rootCmd.AddCommand(lintCmd)
 
@@ -23,13 +29,10 @@ func NewRootCmd() *cobra.Command {
 
 // newRootCmdRaw returns the root command of the evmos-checker tool without any subcommands or flags configured.
 func newRootCmdRaw() *cobra.Command {
-	// rootCmd represents the base command when called without any subcommands
 	rootCmd := &cobra.Command{
 		Use:   "evmos-checker",
 		Short: "A collection of Evmos related checks",
-		Long: `Evmos Checker | Malte Herrmann | Evmos Core Team
-
-This tool is a collection of checks that are run during development of the Evmos core protocol.`,
+		Long:  rootLongDesc,
 		Run: func(cmd *cobra.Command, args []string) {
 			evmosChecker := checker.NewChecker(checker.Config{})
 
