@@ -2,27 +2,29 @@ package checker_test
 
 import (
 	"github.com/MalteHerrmann/evmos-checker/checker"
+	"github.com/MalteHerrmann/evmos-checker/checks/lint"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("Creating a new checker", func() {
-	var evmosCheck *checker.Checker
+	It("should return a valid checker instance with no checks", func() {
+		evmosCheck := checker.NewChecker(checker.NewConfig(
+			[]checker.Check{},
+		))
 
-	BeforeEach(func() {
-		evmosCheck = checker.NewChecker()
-	})
-
-	It("should return a valid checker instance", func() {
 		Expect(evmosCheck).ToNot(BeNil(), "evmosCheck should not be nil")
+		Expect(evmosCheck.GetChecks()).To(BeEmpty(), "checks should be empty")
+		Expect(evmosCheck.Run()).To(Succeed(), "running the checks should succeed")
 	})
 
-	It("should return an empty list of checks", func() {
-		availableChecks := evmosCheck.GetChecks()
-		Expect(availableChecks).To(BeEmpty(), "checks should be empty")
-	})
+	It("should return a valid checker with lint checks", func() {
+		evmosCheck := checker.NewChecker(checker.NewConfig(
+			lint.NewLintChecks(),
+		))
 
-	It("should start the log with empty checks", func() {
-		Expect(evmosCheck.Run()).To(Succeed(), "starting the checker should succeed")
+		Expect(evmosCheck).ToNot(BeNil(), "evmosCheck should not be nil")
+		Expect(evmosCheck.GetChecks()).To(HaveLen(2), "checks should have length 2")
+		Expect(evmosCheck.Run()).To(Succeed(), "running the checks should succeed")
 	})
 })

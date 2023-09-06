@@ -1,6 +1,7 @@
 package checker
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -22,10 +23,11 @@ type Checker struct {
 }
 
 // NewChecker creates a new Checker instance.
-func NewChecker() *Checker {
+func NewChecker(cfg Config) *Checker {
 	logger := log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
 	return &Checker{
+		checks: cfg.checks,
 		logger: &logger,
 	}
 }
@@ -42,16 +44,10 @@ func (c *Checker) Run() error {
 		fmt.Sprintf("Running %d checks: %s", len(checkNames), strings.Join(checkNames, ", ")),
 	)
 
-	return nil
+	return errors.New("not implemented")
 }
 
 // GetChecks returns all checks, which are currently registered.
 func (c *Checker) GetChecks() []Check {
 	return c.checks
-}
-
-// Check is a single check, which can be run by the checker.
-type Check struct {
-	// name is the name of the check.
-	name string
 }

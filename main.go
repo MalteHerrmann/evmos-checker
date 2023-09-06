@@ -1,15 +1,16 @@
+/*
+Evmos Checker | Malte Herrmann | Evmos Core Team
+
+This tool is a collection of checks that are run during development
+of the Evmos core protocol.
+*/
 package main
 
 import (
-	"github.com/MalteHerrmann/evmos-checker/checker"
-	"github.com/pkg/errors"
+	"github.com/MalteHerrmann/evmos-checker/cmd"
 )
 
 func main() {
-	// Run the checker
-	evmosChecker := checker.NewChecker()
-
-	if err := evmosChecker.Run(); err != nil {
-		panic(errors.Wrap(err, "failed to run checker"))
-	}
+	// Execute the cobra CLI binary.
+	cmd.Execute()
 }
